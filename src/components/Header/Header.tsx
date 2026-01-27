@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import css from "./Header.module.css";
+import style from "../../Home.module.css";
+import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import type { FC } from "react";
+import { AuthButtons } from "../AuthButton/AuthButton";
 
 interface HeaderProps {
   isAuth: boolean;
   favoritesCount: number;
   onLogout: () => void;
 }
-const Header = ({ isAuth, favoritesCount, onLogout }: HeaderProps) => {
+const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -25,73 +31,53 @@ const Header = ({ isAuth, favoritesCount, onLogout }: HeaderProps) => {
   }, []);
 
   return (
-    <header>
-      <div className="container">
-        <Link className="home-link" to="/">
-          <div className="logo">
-            <svg></svg>
-          </div>
-        </Link>
-
+    <header className={style.container}>
+      <div className={css.header}>
+        {/* Logo */}
+        <div className={css.logo}>
+          <svg className="icon icon-ukraine" width="28" height="28">
+            <use href="/public/symbol-defs.svg#icon-ukraine"></use>
+          </svg>
+          <Link to="/">
+            <span className={css.iconText}>LearnLingo</span>
+          </Link>
+        </div>
         {/* Navigation*/}
 
-        <nav className="navigation">
-          <NavLink className="nav-link" to="/">
+        <nav className={css.navigation}>
+          <NavLink className={css.navLink} to="/">
             Home
           </NavLink>
-          <NavLink className="nav-link" to="/teachers">
+          <NavLink className={css.navLink} to="/teachers">
             Teachers
           </NavLink>
 
           {isAuth && favoritesCount > 0 && (
-            <NavLink className="nav-link" to="/favorites">
+            <NavLink className={css.navLink} to="/favorites">
               Favorites ({favoritesCount})
             </NavLink>
           )}
         </nav>
 
-        <div className="auth-buttons">
-          {!isAuth ? (
-            <>
-              <button onClick={() => setShowLogin(true)}>Login</button>
-              <button onClick={() => setShowRegister(true)}>Register</button>
-            </>
-          ) : (
-            <button onClick={onLogout}>Logout</button>
-          )}
-        </div>
+        {/* Auth buttons */}
+
+        <AuthButtons
+          isAuth={isAuth}
+          onLogin={() => setShowLogin(true)}
+          onRegister={() => setShowRegister(true)}
+          onLogout={onLogout}
+        />
       </div>
 
       {/* modals for login and register */}
 
-      {showLogin && (
-        <div
-          className="modal"
-          onClick={(e) => e.target === e.currentTarget && setShowLogin(false)}
-        >
-          <div className="modal-content">
-            <button onClick={() => setShowLogin(false)}>🅧</button>
-            <h2>Login Form</h2>
-            {/* Login form react-hook-form*/}
-          </div>
-        </div>
-      )}
-
-      {showRegister && (
-        <div
-          className="modal"
-          onClick={(e) =>
-            e.target === e.currentTarget && setShowRegister(false)
-          }
-        >
-          <div className="modal-content">
-            <button onClick={() => setShowRegister(false)}>🅧</button>
-            <h2>Register Form</h2>
-            {/* Register form react-hook-form*/}
-          </div>
-        </div>
-      )}
+      <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} />
+      <RegisterModal
+        isOpen={showRegister}
+        onClose={() => setShowRegister(false)}
+      />
     </header>
   );
 };
+
 export default Header;

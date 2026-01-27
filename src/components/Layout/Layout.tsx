@@ -1,9 +1,9 @@
-import Header from "../Header/Header.tsx";
+import Header from "../Header/Header";
 import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <div className="theme-yellow">
-      <Header />
+      <Header isAuth={false} favoritesCount={0} onLogout={() => {}} />
       <Outlet />
     </div>
   );

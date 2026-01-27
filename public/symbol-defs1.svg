@@ -1,0 +1,13 @@
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        .default-palette, .palette0 {color: currentColor;
+            --color0: #f4c550;
+        }
+    </style>
+    <defs>
+        <symbol id="log-in-011" viewBox="0 0 20 20" stroke-width="2" stroke="var(--color0, #f4c550)" stroke-linecap="round" stroke-linejoin="round" fill="none" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M12.5 2.5h1c1.4001 0 2.1002 0 2.635 0.2725 0.4704 0.2397 0.8528 0.6221 1.0925 1.0925C17.5 4.3998 17.5 5.0999 17.5 6.5v7c0 1.4001 0 2.1002-0.2725 2.635-0.2397 0.4704-0.6221 0.8528-1.0925 1.0925C15.6002 17.5 14.9001 17.5 13.5 17.5h-1" />
+            <path d="M8.3333 5.8332 12.5 9.9999M12.5 9.9999 8.3333 14.1666M12.5 9.9999h-10" />
+        </symbol>
+    </defs>
+</svg>

@@ -1,0 +1,59 @@
+.authButtons {
+  display: flex;
+  align-items: center;
+}
+
+.loginLink {
+  background: none;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text-main);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.loginLink:hover {
+  color: var(--color-primary);
+}
+
+.loginButton {
+  background-color: var(--color-primary);
+  color: var(--color-text-main);
+  border-radius: 12px;
+  padding-right: 16px;
+  font-weight: 600;
+  border: none;
+}
+
+.loginButton:hover {
+  background-color: var(--color-primary-light);
+}
+.registerButton {
+  border-radius: 12px;
+  padding: 14px 39px;
+  width: 166px;
+  height: 48px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-bg-main);
+  background-color: var(--color-text-main);
+  border: none;
+}
+.logoutButton {
+  background-color: var(--color-text-main);
+  color: var(--color-bg-main);
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+  border: none;
+}
+
+.logoutButton:hover {
+  opacity: 0.85;
+}
+.icon-login {
+  fill: currentColor;
+}

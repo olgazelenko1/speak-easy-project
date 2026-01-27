@@ -1,7 +1,5 @@
 :root {
   --font-family-main: "Roboto", sans-serif;
-  /* typography */
-  --font-main: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   /* text */
   --color-text-main: #121417;
@@ -40,10 +38,24 @@
   --color-primary: #f0aa8d;
   --color-primary-light: #f4c8ba;
 }
+
+html,
 body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
   font-family: var(--font-family-main);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.375;
+  letter-spacing: -0.02em;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
-/* h1,
+h1,
 h2,
 h3,
 h4,
@@ -51,16 +63,15 @@ h5,
 h6,
 p {
   margin: 0;
-} */
-
+}
 ul {
   list-style: none;
 }
-.container {
-  max-width: 1312px;
-  margin: 0 auto;
-  padding: 0 64px;
+a {
+  text-decoration: none;
+  color: inherit;
 }
+
 .button {
   padding: 16px 48px;
   border-radius: 12px;
