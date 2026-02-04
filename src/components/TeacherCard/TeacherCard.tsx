@@ -2,7 +2,7 @@ import { useState, type FC } from "react";
 import type { Teacher } from "../../types/teacher";
 import css from "./TeacherCard.module.css";
 import Button from "../Ui/Button/Button";
-import BookLessonsModal from "../BookLessonsModal/BookLessonsModal";
+import BookLessonsModal from "../BookModal/BookModal";
 
 interface Props {
   teacher: Teacher;
@@ -134,7 +134,7 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
       {isModalOpen && (
         <BookLessonsModal
           isOpen={isModalOpen}
-          teacherName={`${name} ${surname}`}
+          teacher={{ name, surname, avatar_url }}
           onClose={() => setIsModalOpen(false)}
         />
       )}
