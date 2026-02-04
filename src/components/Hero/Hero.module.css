@@ -1,9 +1,5 @@
-/* .heroSection {
-  padding: 64px 0;
-} */
-
 .heroRow {
-  margin: 0 64px;
+  padding: 0 64px;
   display: flex;
   gap: 32px;
   border-radius: 30px;
@@ -11,7 +7,7 @@
 .heroCard {
   max-width: 720px;
   flex: 1;
-  background-color: #f8f8f8;
+  background-color: var(--color-bg-secondary);
   border-radius: 30px;
   padding: 64px;
 }
@@ -20,16 +16,13 @@
   font-size: 48px;
   line-height: 1.17;
   letter-spacing: -0.02em;
-  color: #121417;
+  color: var(--color-text-main);
+  padding-bottom: 32px;
+  margin: 0;
 }
-.subtitle {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.375;
-  letter-spacing: -0.02em;
-  color: #121417;
-}
+
 .highlight {
+  border-radius: 8px;
   font-style: italic;
   font-weight: 400;
   background-color: var(--color-primary);
@@ -44,20 +37,31 @@
 }
 .heroImageCard {
   min-height: 530px;
-  width: 568px; /* з Figma */
-  background-color: #fbe9ba;
+  width: 568px;
+  background-color: var(--color-primary);
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.infoCard {
-  padding: 32px;
-  border: 1px dashed var(--color-primary);
-  border-radius: 20px;
+  position: relative;
 }
 
-.infoCard ul {
-  display: flex;
-  justify-content: space-between;
+.heroImage {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 60%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.componentImage {
+  fill: var(--color-primary);
+  position: absolute;
+  left: 50%;
+  bottom: 12px; /* pinned to container bottom; adjust as needed */
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 360px;
+  height: 176px;
 }

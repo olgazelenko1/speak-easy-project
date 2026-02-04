@@ -10,7 +10,7 @@ const Hero = () => {
             Unlock your potential with the best{" "}
             <span className={css.highlight}>language</span> tutors
           </h1>
-          <p className={css.subtitle}>
+          <p className={css.text}>
             Embark on an Exciting Language Journey with Expert Language Tutors:
             Elevate your language proficiency to new heights by connecting with
             highly qualified and experienced tutors.
@@ -20,28 +20,20 @@ const Hero = () => {
           </Link>
         </div>
 
-        <div className={css.heroImageCard}></div>
-      </div>
-
-      <div className={css.infoCard}>
-        <ul>
-          <li>
-            <h3>32,000 +</h3>
-            <p>Experienced tutors</p>
-          </li>
-          <li>
-            <h3>300,000 +</h3>
-            <p>5-star tutor reviews</p>
-          </li>
-          <li>
-            <h3>120 +</h3>
-            <p>Subjects taught</p>
-          </li>
-          <li>
-            <h3>200 +</h3>
-            <p>Tutor nationalities</p>
-          </li>
-        </ul>
+        <div className={css.heroImageCard}>
+          <img
+            className={css.heroImage}
+            src="/images/sticker 1.png"
+            alt="Teacher Image"
+          />
+          <svg
+            className={css.componentImage}
+            width="360"
+            height="176"
+          >
+            <use href="/public/symbol-defs2.svg#Yellow"></use>
+          </svg> 
+        </div>
       </div>
     </section>
   );

@@ -19,17 +19,16 @@
 }
 
 .loginButton {
-  background-color: var(--color-primary);
+  background-color: var(--color-bg-main);
   color: var(--color-text-main);
   border-radius: 12px;
   padding-right: 16px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.56;
   border: none;
 }
 
-.loginButton:hover {
-  background-color: var(--color-primary-light);
-}
 .registerButton {
   border-radius: 12px;
   padding: 14px 39px;

@@ -1,0 +1,14 @@
+.teachers {
+  box-sizing: border-box;
+  padding: 96px 128px;
+}
+ul {
+  list-style: none;
+}
+.teachersList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0;
+  margin: 0;
+}

@@ -1,4 +1,11 @@
-:root {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:global(:root) {
   --font-family-main: "Roboto", sans-serif;
 
   /* text */
@@ -10,37 +17,37 @@
   --color-bg-secondary: #f8f8f8;
 }
 /* Yellow theme */
-.theme-yellow {
+:global(.theme-yellow) {
   --color-primary: #f4c550;
   --color-primary-light: #fbe9ba;
 }
 
 /* Green theme */
-.theme-green {
+:global(.theme-green) {
   --color-primary: #9fbaae;
   --color-primary-light: #cbded3;
 }
 
 /* Blue theme */
-.theme-blue {
+:global(.theme-blue) {
   --color-primary: #9fb7ce;
   --color-primary-light: #bfd6ea;
 }
 
 /* Pink theme */
-.theme-pink {
+:global(.theme-pink) {
   --color-primary: #e0a39a;
   --color-primary-light: #f2c0bd;
 }
 
 /* Peach theme */
-.theme-peach {
+:global(.theme-peach) {
   --color-primary: #f0aa8d;
   --color-primary-light: #f4c8ba;
 }
 
-html,
-body {
+:global(html),
+:global(body) {
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -55,19 +62,14 @@ body {
     background-color 0.3s ease,
     color 0.3s ease;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+:global(h1, h2, h3, h4, h5, h6, p, ul, ol, li) {
   margin: 0;
+  padding: 0;
 }
-ul {
+:global(ul, ol) {
   list-style: none;
 }
-a {
+:global(a) {
   text-decoration: none;
   color: inherit;
 }

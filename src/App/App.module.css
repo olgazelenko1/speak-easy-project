@@ -40,3 +40,27 @@
 .read-the-docs {
   color: #888;
 }
+/* Змінюємо позицію контейнера */
+.my-toast-container {
+  top: 2rem; /* відступ зверху */
+  right: 2rem; /* відступ справа */
+}
+
+/* Змінюємо колір бекграунду для success */
+.Toastify__toast--success {
+  background: #4caf50;
+  color: white;
+}
+
+/* Для помилок */
+.Toastify__toast--error {
+  background: #f44336;
+  color: white;
+}
+
+/* Можна регулювати ширину тосту */
+.Toastify__toast {
+  min-width: 300px;
+  max-width: 400px;
+  font-size: 14px;
+}

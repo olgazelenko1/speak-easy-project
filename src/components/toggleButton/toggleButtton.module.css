@@ -1,0 +1,30 @@
+.togglePassword {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  display: block;
+}
+
+.icon ellipse,
+.icon circle,
+.icon line {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.icon line {
+  stroke-linecap: round;
+}

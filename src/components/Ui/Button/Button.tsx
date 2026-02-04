@@ -1,14 +1,17 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, FC } from "react";
+import clsx from "clsx";
 import css from "./Button.module.css";
 
-export const Button = ({
+export const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   children,
+  className,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) => {
+}) => {
   return (
-    <button className={css.button} {...props}>
+    <button {...props} className={clsx(css.button, className)}>
       {children}
     </button>
   );
 };
+
 export default Button;

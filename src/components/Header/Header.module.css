@@ -8,8 +8,8 @@
   justify-content: space-between;
   padding: 20px 0;
 
-  background-color: var(--background, #ffffff);
-  color: var(--text, #121417);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-main);
 }
 
 .logo {
@@ -25,7 +25,7 @@
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #121417;
+  color: var(--color-text-main);
 }
 .navigation {
   display: flex;

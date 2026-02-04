@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
@@ -17,25 +17,12 @@ const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setShowLogin(false);
-        setShowRegister(false);
-      }
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-    };
-  }, []);
-
   return (
     <header className={style.container}>
       <div className={css.header}>
         {/* Logo */}
         <div className={css.logo}>
-          <svg className="icon icon-ukraine" width="28" height="28">
+          <svg className={css.iconUkraine} width="28" height="28">
             <use href="/public/symbol-defs.svg#icon-ukraine"></use>
           </svg>
           <Link to="/">
