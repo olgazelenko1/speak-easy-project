@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-Union" viewBox="0 0 65 32">
+            <title>Union</title>
+            <path fill="currentColor" d="M1.167 0c-0.644 0-1.167 0.523-1.167 1.169v42.616c0 0.646 0.522 1.169 1.167 1.169h63.070c0.645 0 1.167-0.523 1.167-1.169v-42.616c0-0.646-0.522-1.169-1.167-1.169h-63.070z"></path>
+        </symbol>
+    </defs>
+</svg>

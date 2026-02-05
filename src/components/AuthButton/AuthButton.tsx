@@ -18,17 +18,8 @@ export const AuthButtons = ({
     <div className={css.authButtons}>
       {!isAuth ? (
         <>
-          <svg
-            className={css["icon-login"]}
-            width="20"
-            height="20"
-            role="img"
-            aria-hidden="true"
-          >
-            <use
-              href="/symbol-defs1.svg#log-in-011"
-              xlinkHref="/symbol-defs1.svg#log-in-011"
-            />
+          <svg className={css.iconLogin} width="20" height="20">
+            <use href="/symbol-defs1.svg#log-in-011" />
           </svg>
 
           <button className={css.loginButton} onClick={onLogin}>

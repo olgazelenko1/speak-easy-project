@@ -4,7 +4,7 @@ import "normalize.css";
 import "./index.module.css";
 import App from "./App/App.tsx";
 import { BrowserRouter } from "react-router-dom";
-// Theme initialization and helper
+
 const themes = [
   "theme-yellow",
   "theme-green",

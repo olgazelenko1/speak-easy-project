@@ -103,6 +103,7 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
               {reviews.length > 0 && (
                 <div className={css.reviews}>
                   <h4 className={css.hidden}>Reviews</h4>
+
                   <ul className={css.reviewsList}>
                     {reviews.map((review, index) => (
                       <li key={index} className={css.review}>
@@ -118,6 +119,7 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
               )}
 
               {/* Button to book a lesson */}
+
               <Button
                 type="button"
                 className={css.bookLessonButton}

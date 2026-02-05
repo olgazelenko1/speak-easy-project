@@ -53,6 +53,7 @@
 .logoutButton:hover {
   opacity: 0.85;
 }
-.icon-login {
+.iconLogin {
   fill: currentColor;
+  margin-right: 8px;
 }

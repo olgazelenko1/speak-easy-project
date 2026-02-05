@@ -44,3 +44,9 @@
 .passwordWrapper .input {
   padding-right: 48px;
 }
+.registerButton {
+  border-radius: 12px;
+  padding: 16px 10px;
+  width: 438px;
+  height: 60px;
+}

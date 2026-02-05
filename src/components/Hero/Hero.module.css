@@ -1,15 +1,18 @@
 .heroRow {
-  padding: 0 64px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
   gap: 32px;
   border-radius: 30px;
 }
 .heroCard {
+  padding: 98px 64px;
   max-width: 720px;
+  height: 530px;
   flex: 1;
   background-color: var(--color-bg-secondary);
   border-radius: 30px;
-  padding: 64px;
 }
 .title {
   font-weight: 500;
@@ -20,6 +23,14 @@
   padding-bottom: 32px;
   margin: 0;
 }
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  padding-bottom: 64px;
+}
 
 .highlight {
   border-radius: 8px;
@@ -28,6 +39,7 @@
   background-color: var(--color-primary);
 }
 .button {
+  border: none;
   border-radius: 12px;
   padding: 16px 88px;
   width: 267px;
@@ -38,7 +50,7 @@
 .heroImageCard {
   min-height: 530px;
   width: 568px;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-light);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -56,7 +68,7 @@
 }
 
 .componentImage {
-  fill: var(--color-primary);
+  fill: var(--color-primary-light);
   position: absolute;
   left: 50%;
   bottom: 12px; /* pinned to container bottom; adjust as needed */
@@ -64,4 +76,71 @@
   z-index: 2;
   width: 360px;
   height: 176px;
+}
+
+.component {
+  color: var(--color-primary);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 360px;
+  height: 176px;
+  z-index: 990;
+}
+
+.component path {
+  fill: currentColor;
+}
+
+.componentIconWrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 60px;
+  z-index: 999;
+}
+
+.componentIcon {
+  color: var(--color-primary-light);
+}
+
+.componentIcon path {
+  fill: currentColor;
+}
+
+.heroFooter {
+  align-items: flex-start;
+  width: 1312px;
+  height: 116px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  margin-left: 64px;
+  margin-right: 64px;
+  padding: 32px;
+  border: 1.5px dashed var(--color-primary);
+  border-radius: 30px;
+}
+
+.statsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.statsItem {
+  flex: 1 1 150px;
+  text-align: center;
+}
+
+.statsValue {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.statsLabel {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
 }

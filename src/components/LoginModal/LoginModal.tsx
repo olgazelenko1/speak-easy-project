@@ -58,46 +58,48 @@ const LoginModal: FC<Props> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div className={css.loginModal}>
-        <div className={css.loginContainer}>
-          <h2 className={css.loginTitle}>Log In</h2>
+    <section id="join">
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <div className={css.loginModal}>
+          <div className={css.loginContainer}>
+            <h2 className={css.loginTitle}>Log In</h2>
 
-          <p className={css.loginDescription}>
-            Welcome back! Please enter your credentials to access your account
-            and continue your search for an teacher.
-          </p>
-        </div>
-
-        <form
-          className={css.loginForm}
-          onSubmit={handleSubmit(onSubmit, onError)}
-        >
-          <input
-            className={css.input}
-            {...register("email")}
-            placeholder="Email"
-          />
-
-          <div className={css.passwordWrapper}>
-            <input
-              type={showPassword ? "text" : "password"}
-              className={css.input}
-              {...register("password")}
-              placeholder="Password"
-            />
-            <PasswordToggle
-              show={showPassword}
-              onClick={() => setShowPassword((prev) => !prev)}
-            />
+            <p className={css.loginDescription}>
+              Welcome back! Please enter your credentials to access your account
+              and continue your search for an teacher.
+            </p>
           </div>
 
-          <Button type="submit" className={css.button}>
-            Log In
-          </Button>
-        </form>
-      </div>
-    </Modal>
+          <form
+            className={css.loginForm}
+            onSubmit={handleSubmit(onSubmit, onError)}
+          >
+            <input
+              className={css.input}
+              {...register("email")}
+              placeholder="Email"
+            />
+
+            <div className={css.passwordWrapper}>
+              <input
+                type={showPassword ? "text" : "password"}
+                className={css.input}
+                {...register("password")}
+                placeholder="Password"
+              />
+              <PasswordToggle
+                show={showPassword}
+                onClick={() => setShowPassword((prev) => !prev)}
+              />
+            </div>
+
+            <Button type="submit" className={css.button}>
+              Log In
+            </Button>
+          </form>
+        </div>
+      </Modal>
+    </section>
   );
 };
 

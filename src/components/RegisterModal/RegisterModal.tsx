@@ -59,8 +59,11 @@ const RegisterModal: FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
+
       <div className={css.registerModal}>
+
         <h2 className={css.registerTitle}>Registration</h2>
+
         <p className={css.registerDescription}>
           Thank you for your interest in our platform! In order to register, we
           need some information. Please provide us with the following
@@ -82,23 +85,30 @@ const RegisterModal: FC<Props> = ({ isOpen, onClose }) => {
             {...register("email")}
             placeholder="Email"
           />
+
           <div className={css.passwordWrapper}>
+
             <input
               type={showPassword ? "text" : "password"}
               className={css.input}
               {...register("password")}
               placeholder="Password"
             />
+            
             <PasswordToggle
               show={showPassword}
               onClick={() => setShowPassword((prev) => !prev)}
             />
           </div>
+
           <Button type="submit" className={css.registerButton}>
             Sign Up
           </Button>
+
         </form>
+
       </div>
+
     </Modal>
   );
 };
