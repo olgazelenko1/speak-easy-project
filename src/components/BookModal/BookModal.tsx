@@ -7,6 +7,7 @@ import bookingUser from "../../firebase/booking";
 import * as yup from "yup";
 import Modal from "../Modal/Modal";
 import css from "./BookModal.module.css";
+import { Button } from "../Ui/Button/Button";
 
 interface TeacherPreview {
   name: string;
@@ -42,7 +43,6 @@ const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -88,129 +88,98 @@ const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
   };
 
   const { avatar_url, name, surname } = teacher;
+  const reasons = [
+    "Career and business",
+    "Lesson for kids",
+    "Living abroad",
+    "Exams and coursework",
+    "Culture, travel or hobby",
+  ];
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={css.bookModal}>
-        <h2>Book trial lesson</h2>
-        <p>
+        <h2 className={css.bookModalTitle}>Book trial lesson</h2>
+        <p className={css.description}>
           Our experienced tutor will assess your current language level, discuss
           your learning goals, and tailor the lesson to your specific needs.
         </p>
+
         <div className={css.details}>
           <img
             src={avatar_url}
             alt={`${name} ${surname}`}
             className={css.avatar}
           />
-          <h3>
-            {name} {surname}
+          <div className={css.detailsText}>
+            <p className={css.subtitle}>Your teacher</p>
+            <h3 className={css.teacherName}>
+              {name} {surname}
+            </h3>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
+          <h3 className={css.formTitle}>
+            What is your main reason for learning English?
           </h3>
-        </div>
 
-        <div>
-          <form onSubmit={handleSubmit(onSubmit, onError)}>
-            <h3>What is your main reason for learning English?</h3>
-
-            <div className={css.radioGroup}>
-              <label>
+          <div className={css.radioGroup}>
+            {reasons.map((reason) => (
+              <label key={reason} className={css.radioLabel}>
                 <input
                   type="radio"
-                  value="Career and business"
+                  value={reason}
                   {...register("reason", {
                     required: "Please select a reason",
                   })}
                 />
-                Career and business
+                {reason}
               </label>
+            ))}
+          </div>
 
-              <label>
-                <input
-                  type="radio"
-                  value="Lesson for kids"
-                  {...register("reason", {
-                    required: "Please select a reason",
-                  })}
-                />
-                Lesson for kids
-              </label>
+          <div className={css.formGroup}>
+            <input
+              className={css.input}
+              id="name"
+              {...register("name")}
+              type="text"
+              placeholder="Name"
+              aria-label="Enter your name"
+            />
 
-              <label>
-                <input
-                  type="radio"
-                  value="Living abroad"
-                  {...register("reason", {
-                    required: "Please select a reason",
-                  })}
-                />
-                Living abroad
-              </label>
+            <input
+              className={css.input}
+              id="email"
+              {...register("email")}
+              type="email"
+              placeholder="Email"
+            />
 
-              <label>
-                <input
-                  type="radio"
-                  value="Exams and coursework"
-                  {...register("reason", {
-                    required: "Please select a reason",
-                  })}
-                />
-                Exams and coursework
-              </label>
+            <input
+              className={css.input}
+              id="phone_number"
+              {...register("phone_number")}
+              type="tel"
+              placeholder="Phone number"
+            />
+          </div>
 
-              <label>
-                <input
-                  type="radio"
-                  value="Culture, travel or hobby"
-                  {...register("reason", {
-                    required: "Please select a reason",
-                  })}
-                />
-                Culture, travel or hobby
-              </label>
-
-              {errors.reason && (
-                <p className={css.error}>{errors.reason.message}</p>
-              )}
-            </div>
-
-            {/* Інші поля форми */}
-            <div className={css.formGroup}>
-              <input
-                id="name"
-                {...register("name")}
-                type="text"
-                placeholder="Name"
-              />
-              {errors.name && <p>{errors.name.message}</p>}
-            </div>
-            <div className={css.formGroup}>
-              <input
-                id="email"
-                {...register("email")}
-                type="email"
-                placeholder="Email"
-              />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-            <div className={css.formGroup}>
-              <input
-                id="phone_number"
-                {...register("phone_number")}
-                type="tel"
-                placeholder="Phone number"
-              />
-              {errors.phone_number && <p>{errors.phone_number.message}</p>}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={css.submitButton}
-            >
-              {isSubmitting ? "Booking..." : "Book Lesson"}
-            </button>
-          </form>
-        </div>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className={css.submitButton}
+          >
+            {isSubmitting ? (
+              <>
+                <span className={css.spinner}></span> Booking...
+              </>
+            ) : (
+              "Book"
+            )}
+          </Button>
+        </form>
       </div>
     </Modal>
   );

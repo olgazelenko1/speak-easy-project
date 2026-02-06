@@ -50,14 +50,14 @@ const Hero = () => {
             <dl className={css.statsList}>
               <div className={css.statsItem}>
                 <dt className={css.statsValue}>
-                  <CountUp start={0} end={32000} duration={5} separator="," /> +
+                  <CountUp start={0} end={32000} duration={2} separator="," /> +
                 </dt>
                 <dd className={css.statsLabel}>Experienced tutors</dd>
               </div>
 
               <div className={css.statsItem}>
                 <dt className={css.statsValue}>
-                  <CountUp start={0} end={300000} duration={6} separator="," />{" "}
+                  <CountUp start={0} end={300000} duration={2} separator="," />{" "}
                   +
                 </dt>
                 <dd className={css.statsLabel}>5-star tutor reviews</dd>
@@ -65,14 +65,14 @@ const Hero = () => {
 
               <div className={css.statsItem}>
                 <dt className={css.statsValue}>
-                  <CountUp start={0} end={120} duration={7} separator="," /> +
+                  <CountUp start={0} end={120} duration={2} separator="," /> +
                 </dt>
                 <dd className={css.statsLabel}>Subjects taught</dd>
               </div>
 
               <div className={css.statsItem}>
                 <dt className={css.statsValue}>
-                  <CountUp start={0} end={200} duration={5} separator="," /> +
+                  <CountUp start={0} end={200} duration={2} separator="," /> +
                 </dt>
                 <dd className={css.statsLabel}>Tutor nationalities</dd>
               </div>

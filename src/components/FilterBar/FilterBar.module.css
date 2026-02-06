@@ -1,0 +1,46 @@
+.filterBar {
+  display: flex;
+  gap: 16px;
+  width: 1184px;
+  margin: 28px auto;
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.select,
+.input {
+  border-radius: 12px;
+  padding: 14px 16px;
+  width: 220px;
+  height: 48px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  outline: none;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+.select:focus,
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(244, 197, 80, 0.2);
+}
+
+.input::placeholder {
+  color: rgba(18, 20, 23, 0.4);
+  font-style: italic;
+}
+
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

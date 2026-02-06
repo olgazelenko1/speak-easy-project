@@ -1,24 +1,115 @@
 .bookModal {
-  box-sizing: border-box;
-  width: 540px;
-  height: auto;
+  width: 600px;
+  height: 900px; /* Фіксована висота замість max-height, щоб уникнути розтягування */
+  overflow-y: auto; /* Прокрутка, якщо вміст перевищує висоту */
   padding: 64px;
-  border-radius: 30px;
-  background-color: var(--color-bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0; /* Забороняє зменшення висоти */
 }
-.formContainer {
+
+.details {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
-.avatar {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  border-radius: 50%;
+.bookModalTitle {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
 }
-.details {
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: rgba(18, 20, 23, 0.8);
+}
+.subtitle {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+.teacherName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+.formTitle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+.radioGroup {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.radioLabel {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.radioLabel input {
+  accent-color: var(--color-primary);
+}
+
+.formGroup {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input {
+  width: 100%;
+  height: 54px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
-  gap: 4px;
+  border-radius: 12px;
+  padding: 16px 15px;
+  width: 472px;
+  height: 60px;
 }

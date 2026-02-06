@@ -1,9 +1,17 @@
 .teachers {
+  background-color: var(--color-bg-secondary);
   box-sizing: border-box;
   padding: 96px 128px;
 }
 ul {
   list-style: none;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 32px;
 }
 .teachersList {
   display: flex;
@@ -11,4 +19,12 @@ ul {
   gap: 32px;
   padding: 0;
   margin: 0;
+}
+.loadMore {
+  margin: 71px auto 96px;
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 183px;
+  height: 60px;
+  display: block;
 }
