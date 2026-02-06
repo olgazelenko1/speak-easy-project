@@ -1,0 +1,15 @@
+.favoriteContainer {
+  background-color: var(--color-bg-secondary);
+  box-sizing: border-box;
+  padding: 96px 128px;
+
+}
+.mainContainer {
+  display: flex;
+  gap: 32px;
+}
+.favoritesList{
+      display: flex;
+    flex-direction: column;
+  gap: 32px;
+}

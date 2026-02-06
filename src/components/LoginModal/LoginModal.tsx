@@ -13,6 +13,7 @@ import PasswordToggle from "../toggleButton/toggleButton";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  onLoginSuccess: () => void;
 }
 
 type FormData = {
@@ -28,7 +29,7 @@ const schema = yup.object({
     .required("Password is required"),
 });
 
-const LoginModal: FC<Props> = ({ isOpen, onClose }) => {
+const LoginModal: FC<Props> = ({ isOpen, onClose, onLoginSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { register, handleSubmit } = useForm<FormData>({
@@ -40,6 +41,7 @@ const LoginModal: FC<Props> = ({ isOpen, onClose }) => {
       await loginUser(data.email, data.password);
       toast.success("Logged in successfully!");
       onClose();
+      onLoginSuccess();
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);

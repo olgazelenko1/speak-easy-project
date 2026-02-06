@@ -80,7 +80,13 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+      <LoginModal
+        isOpen={isLoginOpen}
+        onClose={() => setIsLoginOpen(false)}
+        onLoginSuccess={() => {
+          console.log("Login successful!");
+        }}
+      />
     </section>
   );
 };

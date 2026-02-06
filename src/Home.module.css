@@ -3,7 +3,6 @@
   margin: 0 auto;
 }
 
-/* Точка перелому 1 — планшети */
 @media (max-width: 768px) {
   .container {
     max-width: 720px;
@@ -11,10 +10,9 @@
   }
 }
 
-/* Точка перелому 2 — мобільні телефони */
 @media (max-width: 480px) {
   .container {
-    max-width: 100%; /* заповнює весь екран */
+    max-width: 100%;
     padding: 0 16px;
     margin: 0 auto;
   }
