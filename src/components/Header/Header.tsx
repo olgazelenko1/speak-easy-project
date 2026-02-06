@@ -60,7 +60,13 @@ const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
 
       {/* modals for login and register */}
 
-      <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} />
+      <LoginModal
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
+        onLoginSuccess={() => {
+          setShowLogin(false);
+        }}
+      />
       <RegisterModal
         isOpen={showRegister}
         onClose={() => setShowRegister(false)}

@@ -7,9 +7,10 @@ import { type User } from "firebase/auth";
 
 interface Props {
   children: ReactNode;
+  isAuth: boolean;
 }
 
-const PrivateRoute: FC<Props> = ({ children }) => {
+const PrivateRoute: FC<Props> = ({ children, isAuth }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +25,7 @@ const PrivateRoute: FC<Props> = ({ children }) => {
 
   if (loading) return <p>Loading...</p>;
 
-  if (!user) return <Navigate to="/" replace />;
+  if (!isAuth || !user) return <Navigate to="/" replace />;
 
   return <>{children}</>;
 };
