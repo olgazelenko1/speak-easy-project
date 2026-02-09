@@ -11,12 +11,12 @@ interface Props {
   user?: { id: string; name: string } | null;
 }
 
-const TeacherCard: FC<Props> = ({ teacher, user }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!user);
+const TeacherCard: FC<Props> = ({ teacher }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    const unsubscribe = subscribeToAuth((u) => {
-      setIsLoggedIn(!!u);
+    const unsubscribe = subscribeToAuth((User) => {
+      setIsLoggedIn(!!User);
     });
     return () => unsubscribe();
   }, []);
@@ -37,6 +37,8 @@ const TeacherCard: FC<Props> = ({ teacher, user }) => {
   });
 
   const toggleFavorite = () => {
+    if (isLoggedIn === undefined) return;
+
     if (!isLoggedIn) {
       setIsLoginModalOpen(true);
       return;
