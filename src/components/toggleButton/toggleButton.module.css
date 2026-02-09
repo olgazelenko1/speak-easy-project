@@ -4,9 +4,8 @@
   background: transparent;
   border: none;
   padding: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
 }
 
@@ -14,7 +13,8 @@
   width: 20px;
   height: 20px;
   color: var(--color-text-secondary);
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .icon ellipse,

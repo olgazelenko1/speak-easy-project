@@ -13,7 +13,7 @@ import PasswordToggle from "../toggleButton/toggleButton";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  onLoginSuccess: () => void;
+  onLoginSuccess?: () => void;
 }
 
 type FormData = {
@@ -41,7 +41,7 @@ const LoginModal: FC<Props> = ({ isOpen, onClose, onLoginSuccess }) => {
       await loginUser(data.email, data.password);
       toast.success("Logged in successfully!");
       onClose();
-      onLoginSuccess();
+      onLoginSuccess?.();
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);

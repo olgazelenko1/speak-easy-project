@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import css from "./toggleButtton.module.css";
+import css from "./toggleButton.module.css";
 
 const PasswordToggle: FC<{ show: boolean; onClick: () => void }> = ({
   show,

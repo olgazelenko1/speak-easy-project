@@ -1,13 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "../components/Layout/Layout";
+import Layout from "../Layout";
 import FavoritesPage from "../pages/FavoritesPage/FavoritesPage";
 import HomePage from "../pages/HomePage/HomePage";
 import TeachersPage from "../pages/TeachersPage/TeachersPage";
 import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
-  const isAuth = !!localStorage.getItem("token");
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -15,7 +13,7 @@ const AppRoutes = () => {
         <Route
           path="favorites"
           element={
-            <PrivateRoute isAuth={isAuth}>
+            <PrivateRoute>
               <FavoritesPage />
             </PrivateRoute>
           }

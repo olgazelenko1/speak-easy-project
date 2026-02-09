@@ -1,11 +1,23 @@
 import css from "./Hero.module.css";
 import style from "../../Home.module.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginModal from "../LoginModal/LoginModal";
 import CountUp from "react-countup";
+import { useAuth } from "../../hooks/useAuth";
 
 const Hero = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+  const handleGetStarted = () => {
+    if (user) {
+      navigate("/teachers");
+    } else {
+      setIsLoginOpen(true);
+    }
+  };
 
   return (
     <section className={css.heroSection}>
@@ -21,7 +33,7 @@ const Hero = () => {
               Tutors: Elevate your language proficiency to new heights by
               connecting with highly qualified and experienced tutors.
             </p>
-            <button className={css.button} onClick={() => setIsLoginOpen(true)}>
+            <button className={css.button} onClick={handleGetStarted}>
               Get started
             </button>
           </div>
@@ -46,45 +58,43 @@ const Hero = () => {
         </div>
 
         <div className={css.heroFooter}>
-          <div className={style.container}>
-            <dl className={css.statsList}>
-              <div className={css.statsItem}>
-                <dt className={css.statsValue}>
-                  <CountUp start={0} end={32000} duration={2} separator="," /> +
-                </dt>
-                <dd className={css.statsLabel}>Experienced tutors</dd>
-              </div>
+          <dl className={css.statsList}>
+            <div className={css.statsItem}>
+              <dt className={css.statsValue}>
+                <CountUp start={0} end={32000} duration={2} separator="," /> +
+              </dt>
+              <dd className={css.statsLabel}>Experienced tutors</dd>
+            </div>
 
-              <div className={css.statsItem}>
-                <dt className={css.statsValue}>
-                  <CountUp start={0} end={300000} duration={2} separator="," />{" "}
-                  +
-                </dt>
-                <dd className={css.statsLabel}>5-star tutor reviews</dd>
-              </div>
+            <div className={css.statsItem}>
+              <dt className={css.statsValue}>
+                <CountUp start={0} end={300000} duration={2} separator="," /> +
+              </dt>
+              <dd className={css.statsLabel}>5-star tutor reviews</dd>
+            </div>
 
-              <div className={css.statsItem}>
-                <dt className={css.statsValue}>
-                  <CountUp start={0} end={120} duration={2} separator="," /> +
-                </dt>
-                <dd className={css.statsLabel}>Subjects taught</dd>
-              </div>
+            <div className={css.statsItem}>
+              <dt className={css.statsValue}>
+                <CountUp start={0} end={120} duration={2} separator="," /> +
+              </dt>
+              <dd className={css.statsLabel}>Subjects taught</dd>
+            </div>
 
-              <div className={css.statsItem}>
-                <dt className={css.statsValue}>
-                  <CountUp start={0} end={200} duration={2} separator="," /> +
-                </dt>
-                <dd className={css.statsLabel}>Tutor nationalities</dd>
-              </div>
-            </dl>
-          </div>
+            <div className={css.statsItem}>
+              <dt className={css.statsValue}>
+                <CountUp start={0} end={200} duration={2} separator="," /> +
+              </dt>
+              <dd className={css.statsLabel}>Tutor nationalities</dd>
+            </div>
+          </dl>
         </div>
       </div>
       <LoginModal
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
         onLoginSuccess={() => {
-          console.log("Login successful!");
+          setIsLoginOpen(false);
+          navigate("/teachers");
         }}
       />
     </section>

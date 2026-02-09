@@ -12,7 +12,7 @@
   margin: auto;
 }
 .languagesContainer {
-  margin-right: 210px;
+  margin-right: 410px;
   color: #8a8a89;
 }
 .languages {
@@ -177,7 +177,7 @@
 }
 
 .favorited {
-  color: #e63946; /* активне сердечко */
+  color: #e63946;
 }
 
 .favoriteButton:hover {

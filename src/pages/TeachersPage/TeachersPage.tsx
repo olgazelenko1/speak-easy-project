@@ -4,7 +4,6 @@ import { getTeachers } from "../../firebase/teachers";
 import TeacherCard from "../../components/TeacherCard/TeacherCard";
 import css from "./TeacherPage.module.css";
 import { Button } from "../../components/Ui/Button/Button";
-import { Link } from "react-router-dom";
 import TeachersFilters from "../../components/FilterBar/FilterBar";
 
 const TEACHERS_PER_PAGE = 4;
@@ -25,6 +24,7 @@ const TeachersPage = () => {
       try {
         const data = await getTeachers();
         setAllTeachers(data);
+        localStorage.setItem("allTeachers", JSON.stringify(data));
       } catch (error) {
         console.error("Failed to fetch teachers:", error);
       } finally {
@@ -70,14 +70,6 @@ const TeachersPage = () => {
 
   return (
     <section className={css.teachers}>
-      <div className={css.header}>
-        <Link to="/favorites" className={css.favoritesLink}>
-          View Favorites
-        </Link>
-        <Link to="/" className={css.homePage}>
-          Home Page
-        </Link>
-      </div>
 
       <TeachersFilters
         filters={filters}

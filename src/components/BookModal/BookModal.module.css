@@ -1,12 +1,12 @@
 .bookModal {
   width: 600px;
-  height: 900px; /* Фіксована висота замість max-height, щоб уникнути розтягування */
-  overflow-y: auto; /* Прокрутка, якщо вміст перевищує висоту */
+  height: 900px;
+  overflow-y: auto;
   padding: 64px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  flex-shrink: 0; /* Забороняє зменшення висоти */
+  flex-shrink: 0;
 }
 
 .details {

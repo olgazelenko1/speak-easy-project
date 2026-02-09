@@ -1,28 +1,15 @@
-import { useEffect, useState, type FC, type ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { subscribeToAuth } from "../firebase/auth";
-import type { User } from "firebase/auth";
+import { useAuth } from "../hooks/useAuth";
 
 interface Props {
   children: ReactNode;
 }
 
 const PrivateRoute: FC<Props> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
-  useEffect(() => {
-    const unsubscribe = subscribeToAuth((currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/" replace />;
 
   return <>{children}</>;
 };

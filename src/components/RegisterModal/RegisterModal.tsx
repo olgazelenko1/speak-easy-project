@@ -12,6 +12,7 @@ import PasswordToggle from "../toggleButton/toggleButton";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  onRegisterSuccess?: () => void;
 }
 
 type FormData = {
@@ -29,7 +30,7 @@ const schema = yup.object({
     .required("Password is required"),
 });
 
-const RegisterModal: FC<Props> = ({ isOpen, onClose }) => {
+const RegisterModal: FC<Props> = ({ isOpen, onClose, onRegisterSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { register, handleSubmit } = useForm<FormData>({
@@ -41,6 +42,7 @@ const RegisterModal: FC<Props> = ({ isOpen, onClose }) => {
       await registerUser(data.name, data.email, data.password);
       toast.success("Registered successfully!");
       onClose();
+      onRegisterSuccess?.();
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
@@ -59,9 +61,7 @@ const RegisterModal: FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-
       <div className={css.registerModal}>
-
         <h2 className={css.registerTitle}>Registration</h2>
 
         <p className={css.registerDescription}>
@@ -87,14 +87,13 @@ const RegisterModal: FC<Props> = ({ isOpen, onClose }) => {
           />
 
           <div className={css.passwordWrapper}>
-
             <input
               type={showPassword ? "text" : "password"}
               className={css.input}
               {...register("password")}
               placeholder="Password"
             />
-            
+
             <PasswordToggle
               show={showPassword}
               onClick={() => setShowPassword((prev) => !prev)}
@@ -104,11 +103,8 @@ const RegisterModal: FC<Props> = ({ isOpen, onClose }) => {
           <Button type="submit" className={css.registerButton}>
             Sign Up
           </Button>
-
         </form>
-
       </div>
-
     </Modal>
   );
 };

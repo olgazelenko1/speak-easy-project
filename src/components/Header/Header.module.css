@@ -39,3 +39,15 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+@media (max-width: 960px) {
+  .header {
+    margin: 0 32px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .header {
+    margin: 0 16px;
+  }
+}

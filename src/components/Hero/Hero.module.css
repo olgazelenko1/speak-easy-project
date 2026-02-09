@@ -71,7 +71,7 @@
   fill: var(--color-primary-light);
   position: absolute;
   left: 50%;
-  bottom: 12px; /* pinned to container bottom; adjust as needed */
+  bottom: 12px;
   transform: translateX(-50%);
   z-index: 2;
   width: 360px;

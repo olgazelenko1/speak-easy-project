@@ -1,67 +1,38 @@
-import { useEffect, useState, type FC } from "react";
+import { useState, type FC } from "react";
 import type { Teacher } from "../../types/teacher";
 import css from "./TeacherCard.module.css";
 import Button from "../Ui/Button/Button";
 import BookLessonsModal from "../BookModal/BookModal";
 import LoginModal from "../LoginModal/LoginModal";
-import { subscribeToAuth } from "../../firebase/auth";
+import { useAuth } from "../../hooks/useAuth";
 
 interface Props {
   teacher: Teacher;
-  user?: { id: string; name: string } | null;
 }
 
 const TeacherCard: FC<Props> = ({ teacher }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(undefined);
+  const teacherId =
+    teacher.id || `${teacher.name}-${teacher.surname}-${teacher.lesson_info}`;
 
-  useEffect(() => {
-    const unsubscribe = subscribeToAuth((User) => {
-      setIsLoggedIn(!!User);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  const teacherId = `${teacher.name}-${teacher.surname}-${teacher.lesson_info}`;
+  const { user, favorites, addFavorite, removeFavorite } = useAuth();
 
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-  const [isFavorite, setIsFavorite] = useState<boolean>(() => {
-    const favorites: Teacher[] = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
-    );
-    return favorites.some(
-      (t) => `${t.name}-${t.surname}-${t.lesson_info}` === teacherId,
-    );
-  });
+  const isFavorite = favorites.includes(teacherId);
 
   const toggleFavorite = () => {
-    if (isLoggedIn === undefined) return;
-
-    if (!isLoggedIn) {
+    if (!user) {
       setIsLoginModalOpen(true);
       return;
     }
 
-    const favorites: Teacher[] = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
-    );
-
-    let updatedFavorites: Teacher[];
-
     if (isFavorite) {
-      updatedFavorites = favorites.filter(
-        (t) => `${t.name}-${t.surname}-${t.lesson_info}` !== teacherId,
-      );
+      removeFavorite(teacherId);
     } else {
-      updatedFavorites = [
-        ...favorites,
-        { ...teacher, _id: teacherId } as Teacher,
-      ];
+      addFavorite(teacherId);
     }
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    setIsFavorite(!isFavorite);
   };
 
   const {
@@ -85,17 +56,12 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
         <div className={css.languagesContainer}>
           <h3 className={css.languages}>Languages</h3>
         </div>
+
         <svg className={css.starIcon} width="16" height="16">
           <use href="/icon/pack.svg#book-open-01"></use>
         </svg>
         <p className={css.info}>Lessons online: {lessons_done}</p>
-        <svg className={css.starIcon} width="1" height="16">
-          <use href="/icon/pack.svg#Vector5"></use>
-        </svg>
-        <p className={css.info}>Lessons done: {lessons_done}</p>
-        <svg className={css.starIcon} width="1" height="16">
-          <use href="/icon/pack.svg#Vector5"></use>
-        </svg>
+
         <div className={css.ratingContainer}>
           <img
             className={css.ratingIcon}
@@ -104,9 +70,7 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
           />
           <p className={css.info}>Rating: {rating}</p>
         </div>
-        <svg className={css.starIcon} width="1" height="16">
-          <use href="/icon/pack.svg#Vector5"></use>
-        </svg>
+
         <p className={css.info}>
           Price / 1 hour:{" "}
           <span className={css.infoPrice}>${price_per_hour}</span>
@@ -138,7 +102,7 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
           </h2>
 
           <p className={css.info}>
-            <strong className={css.infoSpan}>Speaks:</strong>{" "}
+            <strong className={css.infoSpan}>Speaks:</strong>
             {languages.join(", ")}
           </p>
 
@@ -147,12 +111,12 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
           </p>
 
           <p className={css.info}>
-            <strong className={css.infoSpan}>Conditions:</strong>{" "}
-            {conditions.join(", ")}
+            <strong className={css.infoSpan}>Conditions:</strong>
+            {conditions.join(" ")}
           </p>
 
           <p className={css.info}>
-            <strong className={css.infoSpan}>Experience:</strong>{" "}
+            <strong className={css.infoSpan}>Experience:</strong>
             {expanded ? experience : `${experience.slice(0, 80)}...`}
           </p>
 
@@ -212,7 +176,10 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
         <LoginModal
           isOpen={isLoginModalOpen}
           onClose={() => setIsLoginModalOpen(false)}
-          onLoginSuccess={() => setIsLoginModalOpen(false)}
+          onLoginSuccess={() => {
+            setIsLoginModalOpen(false);
+            toggleFavorite();
+          }}
         />
       )}
     </div>

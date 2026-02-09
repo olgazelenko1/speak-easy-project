@@ -11,16 +11,21 @@ import { AuthButtons } from "../AuthButton/AuthButton";
 interface HeaderProps {
   isAuth: boolean;
   favoritesCount: number;
+  onLoginSuccess?: () => void;
   onLogout: () => void;
 }
-const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
+const Header: FC<HeaderProps> = ({
+  isAuth,
+  favoritesCount,
+  onLoginSuccess,
+  onLogout,
+}) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
   return (
     <header className={style.container}>
       <div className={css.header}>
-        {/* Logo */}
         <div className={css.logo}>
           <svg className={css.iconUkraine} width="28" height="28">
             <use href="/icon/symbol-defs.svg#icon-ukraine"></use>
@@ -31,8 +36,6 @@ const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
           </Link>
         </div>
 
-        {/* Navigation*/}
-
         <nav className={css.navigation}>
           <NavLink className={css.navLink} to="/">
             Home
@@ -41,14 +44,12 @@ const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
             Teachers
           </NavLink>
 
-          {isAuth && favoritesCount > 0 && (
+          {isAuth && (
             <NavLink className={css.navLink} to="/favorites">
-              Favorites ({favoritesCount})
+              Favorites {favoritesCount > 0 && `(${favoritesCount})`}
             </NavLink>
           )}
         </nav>
-
-        {/* Auth buttons */}
 
         <AuthButtons
           isAuth={isAuth}
@@ -58,18 +59,21 @@ const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
         />
       </div>
 
-      {/* modals for login and register */}
-
       <LoginModal
         isOpen={showLogin}
         onClose={() => setShowLogin(false)}
         onLoginSuccess={() => {
           setShowLogin(false);
+          onLoginSuccess?.();
         }}
       />
       <RegisterModal
         isOpen={showRegister}
         onClose={() => setShowRegister(false)}
+        onRegisterSuccess={() => {
+          setShowRegister(false);
+          onLoginSuccess?.();
+        }}
       />
     </header>
   );
