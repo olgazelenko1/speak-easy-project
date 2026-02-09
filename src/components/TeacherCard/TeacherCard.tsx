@@ -1,37 +1,65 @@
-import { useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import type { Teacher } from "../../types/teacher";
 import css from "./TeacherCard.module.css";
 import Button from "../Ui/Button/Button";
 import BookLessonsModal from "../BookModal/BookModal";
+import LoginModal from "../LoginModal/LoginModal";
+import { subscribeToAuth } from "../../firebase/auth";
 
 interface Props {
   teacher: Teacher;
+  user?: { id: string; name: string } | null;
 }
 
-const TeacherCard: FC<Props> = ({ teacher }) => {
+const TeacherCard: FC<Props> = ({ teacher, user }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(!!user);
+
+  useEffect(() => {
+    const unsubscribe = subscribeToAuth((u) => {
+      setIsLoggedIn(!!u);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const teacherId = `${teacher.name}-${teacher.surname}-${teacher.lesson_info}`;
+
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
   const [isFavorite, setIsFavorite] = useState<boolean>(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    return favorites.some((t: Teacher) => t.id === teacher.id);
+    const favorites: Teacher[] = JSON.parse(
+      localStorage.getItem("favorites") || "[]",
+    );
+    return favorites.some(
+      (t) => `${t.name}-${t.surname}-${t.lesson_info}` === teacherId,
+    );
   });
 
-  const getFavorites = (): Teacher[] =>
-    JSON.parse(localStorage.getItem("favorites") || "[]");
-
   const toggleFavorite = () => {
-    const favorites = getFavorites();
+    if (!isLoggedIn) {
+      setIsLoginModalOpen(true);
+      return;
+    }
+
+    const favorites: Teacher[] = JSON.parse(
+      localStorage.getItem("favorites") || "[]",
+    );
 
     let updatedFavorites: Teacher[];
 
     if (isFavorite) {
-      updatedFavorites = favorites.filter((t) => t.id !== teacher.id);
+      updatedFavorites = favorites.filter(
+        (t) => `${t.name}-${t.surname}-${t.lesson_info}` !== teacherId,
+      );
     } else {
-      updatedFavorites = [...favorites, teacher];
+      updatedFavorites = [
+        ...favorites,
+        { ...teacher, _id: teacherId } as Teacher,
+      ];
     }
-
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    setIsFavorite((prev) => !prev);
+    setIsFavorite(!isFavorite);
   };
 
   const {
@@ -53,42 +81,35 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
     <div className={css.teacherContainer}>
       <div className={css.teacherHeader}>
         <div className={css.languagesContainer}>
-          {" "}
-          <h3 className={css.languages}>Languages</h3>{" "}
-        </div>{" "}
+          <h3 className={css.languages}>Languages</h3>
+        </div>
         <svg className={css.starIcon} width="16" height="16">
-          {" "}
-          <use href="/icon/pack.svg#book-open-01"></use>{" "}
-        </svg>{" "}
-        <p className={css.info}>Lessons online: {lessons_done}</p>{" "}
+          <use href="/icon/pack.svg#book-open-01"></use>
+        </svg>
+        <p className={css.info}>Lessons online: {lessons_done}</p>
         <svg className={css.starIcon} width="1" height="16">
-          {" "}
-          <use href="/icon/pack.svg#Vector5"></use>{" "}
-        </svg>{" "}
-        <p className={css.info}>Lessons done: {lessons_done}</p>{" "}
+          <use href="/icon/pack.svg#Vector5"></use>
+        </svg>
+        <p className={css.info}>Lessons done: {lessons_done}</p>
         <svg className={css.starIcon} width="1" height="16">
-          {" "}
-          <use href="/icon/pack.svg#Vector5"></use>{" "}
-        </svg>{" "}
+          <use href="/icon/pack.svg#Vector5"></use>
+        </svg>
         <div className={css.ratingContainer}>
-          {" "}
           <img
             className={css.ratingIcon}
             src="/images/star.jpg"
             alt="Rating Icon"
-          />{" "}
-          <p className={css.info}>Rating: {rating}</p>{" "}
-        </div>{" "}
+          />
+          <p className={css.info}>Rating: {rating}</p>
+        </div>
         <svg className={css.starIcon} width="1" height="16">
-          {" "}
-          <use href="/icon/pack.svg#Vector5"></use>{" "}
-        </svg>{" "}
+          <use href="/icon/pack.svg#Vector5"></use>
+        </svg>
         <p className={css.info}>
-          {" "}
           Price / 1 hour:{" "}
-          <span className={css.infoPrice}>${price_per_hour}</span>{" "}
+          <span className={css.infoPrice}>${price_per_hour}</span>
         </p>
-        {/* FAVORITE */}
+
         <button
           className={`${css.favoriteButton} ${isFavorite ? css.favorited : ""}`}
           onClick={toggleFavorite}
@@ -100,7 +121,6 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
         </button>
       </div>
 
-      {/* CARD */}
       <div className={css.teacherCard}>
         <div className={css.avatarContainer}>
           <img
@@ -183,6 +203,14 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
           isOpen={isModalOpen}
           teacher={{ name, surname, avatar_url }}
           onClose={() => setIsModalOpen(false)}
+        />
+      )}
+
+      {isLoginModalOpen && (
+        <LoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+          onLoginSuccess={() => setIsLoginModalOpen(false)}
         />
       )}
     </div>
