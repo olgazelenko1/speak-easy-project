@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = ({ isAuth, favoritesCount, onLogout }) => {
         {/* Logo */}
         <div className={css.logo}>
           <svg className={css.iconUkraine} width="28" height="28">
-            <use href="/public/symbol-defs.svg#icon-ukraine"></use>
+            <use href="/icon/symbol-defs.svg#icon-ukraine"></use>
           </svg>
 
           <Link to="/">

@@ -58,30 +58,30 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
         </div>{" "}
         <svg className={css.starIcon} width="16" height="16">
           {" "}
-          <use href="/public/icon/pack.svg#book-open-01"></use>{" "}
+          <use href="/icon/pack.svg#book-open-01"></use>{" "}
         </svg>{" "}
         <p className={css.info}>Lessons online: {lessons_done}</p>{" "}
         <svg className={css.starIcon} width="1" height="16">
           {" "}
-          <use href="/public/icon/pack.svg#Vector5"></use>{" "}
+          <use href="/icon/pack.svg#Vector5"></use>{" "}
         </svg>{" "}
         <p className={css.info}>Lessons done: {lessons_done}</p>{" "}
         <svg className={css.starIcon} width="1" height="16">
           {" "}
-          <use href="/public/icon/pack.svg#Vector5"></use>{" "}
+          <use href="/icon/pack.svg#Vector5"></use>{" "}
         </svg>{" "}
         <div className={css.ratingContainer}>
           {" "}
           <img
             className={css.ratingIcon}
-            src="/public/images/star.jpg"
+            src="/images/star.jpg"
             alt="Rating Icon"
           />{" "}
           <p className={css.info}>Rating: {rating}</p>{" "}
         </div>{" "}
         <svg className={css.starIcon} width="1" height="16">
           {" "}
-          <use href="/public/icon/pack.svg#Vector5"></use>{" "}
+          <use href="/icon/pack.svg#Vector5"></use>{" "}
         </svg>{" "}
         <p className={css.info}>
           {" "}
@@ -95,7 +95,7 @@ const TeacherCard: FC<Props> = ({ teacher }) => {
           aria-label="Toggle favorite"
         >
           <svg width="26" height="26">
-            <use href="/public/icon/hurt.svg#Vector2" />
+            <use href="/icon/hurt.svg#Vector2" />
           </svg>
         </button>
       </div>

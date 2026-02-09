@@ -1,7 +1,7 @@
+import "normalize.css";
+import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "normalize.css";
-import "./index.module.css";
 import App from "./App/App.tsx";
 import { BrowserRouter } from "react-router-dom";
 

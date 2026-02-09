@@ -29,17 +29,17 @@ const Hero = () => {
           <div className={css.heroImageCard}>
             <img
               className={css.heroImage}
-              src="/images/sticker 1.png"
+              src="/images/sticker1.png"
               alt="Teacher Image"
             />
             <div className={css.componentImageWrapper}>
               <svg className={css.component} width="360" height="176">
-                <use href="/public/mac.svg#icon-Union"></use>
+                <use href="/icon/mac.svg#icon-Union"></use>
               </svg>
             </div>
             <div className={css.componentIconWrapper}>
               <svg className={css.componentIcon} width="47" height="56">
-                <use href="/public/apple.svg#icon-untitled"></use>
+                <use href="/icon/apple.svg#icon-untitled"></use>
               </svg>
             </div>
           </div>

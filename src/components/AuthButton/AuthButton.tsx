@@ -19,7 +19,7 @@ export const AuthButtons = ({
       {!isAuth ? (
         <>
           <svg className={css.iconLogin} width="20" height="20">
-            <use href="/symbol-defs1.svg#log-in-011" />
+            <use href="/icon/symbol-defs1.svg#log-in-011" />
           </svg>
 
           <button className={css.loginButton} onClick={onLogin}>

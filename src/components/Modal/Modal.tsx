@@ -26,7 +26,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
       <div className={css.modalContent} onClick={(e) => e.stopPropagation()}>
         <button className={css.modalClose} onClick={onClose}>
           <svg className={css.closeIcon} width="32" height="32">
-            <use href="/public/close.svg#x" />
+            <use href="/icon/close.svg#x" />
           </svg>
         </button>
         {children}
