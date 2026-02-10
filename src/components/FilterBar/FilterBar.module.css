@@ -1,7 +1,8 @@
 .filterBar {
   display: flex;
-  gap: 16px;
-  width: 1184px;
+  flex-direction: row;
+  gap: 10px;
+  width: 720px;
   margin: 28px auto;
 }
 
@@ -43,4 +44,11 @@
 .input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@media (min-width: 860px) {
+  .filterBar {
+    gap: 16px;
+    width: 1184px;
+  }
 }

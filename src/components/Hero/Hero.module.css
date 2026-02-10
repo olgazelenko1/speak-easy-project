@@ -1,9 +1,9 @@
 .heroRow {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 32px;
+  gap: 20px;
   border-radius: 30px;
 }
 .heroCard {
@@ -15,23 +15,22 @@
   border-radius: 30px;
 }
 .title {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 48px;
   line-height: 1.17;
   letter-spacing: -0.02em;
   color: var(--color-text-main);
-  padding-bottom: 32px;
+  padding-bottom: 20px;
   margin: 0;
 }
 .text {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
   letter-spacing: -0.02em;
   color: var(--color-text-main);
-  padding-bottom: 64px;
+  padding-bottom: 40px;
 }
-
 .highlight {
   border-radius: 8px;
   font-style: italic;
@@ -49,15 +48,14 @@
 }
 .heroImageCard {
   min-height: 530px;
-  width: 568px;
-  background-color: var(--color-primary-light);
+  width: 720px;
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  background-color: var(--color-primary-light);
 }
-
 .heroImage {
   position: relative;
   z-index: 1;
@@ -66,7 +64,6 @@
   height: auto;
   margin: 0 auto;
 }
-
 .componentImage {
   fill: var(--color-primary-light);
   position: absolute;
@@ -77,7 +74,6 @@
   width: 360px;
   height: 176px;
 }
-
 .component {
   color: var(--color-primary);
   position: absolute;
@@ -88,11 +84,9 @@
   height: 176px;
   z-index: 990;
 }
-
 .component path {
   fill: currentColor;
 }
-
 .componentIconWrapper {
   position: absolute;
   left: 50%;
@@ -104,19 +98,18 @@
 .componentIcon {
   color: var(--color-primary-light);
 }
-
 .componentIcon path {
   fill: currentColor;
 }
 
 .heroFooter {
   align-items: flex-start;
-  width: 1312px;
-  height: 116px;
+  width: 720px;
+  height: 100%;
   margin-top: 24px;
   margin-bottom: 32px;
-  margin-left: 64px;
-  margin-right: 64px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 32px;
   border: 1.5px dashed var(--color-primary);
   border-radius: 30px;
@@ -126,7 +119,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 15px;
 }
 
 .statsItem {
@@ -143,4 +136,42 @@
 .statsLabel {
   font-size: 1rem;
   color: var(--color-text-secondary);
+}
+@media (min-width: 860px) {
+  .heroRow {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 32px;
+  }
+  .heroCard {
+    padding: 98px 64px;
+    max-width: 720px;
+    height: 530px;
+  }
+  .title {
+    font-weight: 500;
+    font-size: 36px;
+    padding-bottom: 32px;
+    margin: 0;
+  }
+  .text {
+    font-size: 16px;
+    padding-bottom: 64px;
+  }
+
+  .heroImageCard {
+    width: 568px;
+  }
+
+  .heroFooter {
+    min-width: 1312px;
+    height: 116px;
+  }
+
+  .statsList {
+    gap: 2rem;
+  }
 }

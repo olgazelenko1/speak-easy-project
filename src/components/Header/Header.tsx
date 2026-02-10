@@ -7,6 +7,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import type { FC } from "react";
 import { AuthButtons } from "../AuthButton/AuthButton";
+import MobileMenu from "../MobileMenu/MobileMenu";
 
 interface HeaderProps {
   isAuth: boolean;
@@ -51,8 +52,18 @@ const Header: FC<HeaderProps> = ({
           )}
         </nav>
 
-        <AuthButtons
+        <div className={css.authDesktop}>
+          <AuthButtons
+            isAuth={isAuth}
+            onLogin={() => setShowLogin(true)}
+            onRegister={() => setShowRegister(true)}
+            onLogout={onLogout}
+          />
+        </div>
+
+        <MobileMenu
           isAuth={isAuth}
+          favoritesCount={favoritesCount}
           onLogin={() => setShowLogin(true)}
           onRegister={() => setShowRegister(true)}
           onLogout={onLogout}

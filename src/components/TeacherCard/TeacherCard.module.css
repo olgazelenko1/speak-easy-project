@@ -7,12 +7,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 24px;
   padding: 24px;
-  width: 1184px;
+  width: 720px;
   height: 100%;
   margin: auto;
 }
 .languagesContainer {
-  margin-right: 410px;
+  margin-right: 0;
   color: #8a8a89;
 }
 .languages {
@@ -29,29 +29,30 @@
 .teacherHeader {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-direction: row;
   gap: 16px;
 }
 .teacherCard {
+  margin-top: 20px;
   display: flex;
-  justify-content: flex-start;
-  gap: 48px;
+  justify-content: center;
+  gap: 20px;
 }
 .avatarContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 120px;
+  width: 210px;
+  height: 210px;
   padding: 12px;
   border-radius: 50%;
   background-color: transparent;
   border: 2px solid var(--color-primary);
 }
 .avatar {
-  width: 96px;
-  height: 96px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -95,7 +96,6 @@
   padding: 0;
   margin-top: 16px;
 }
-
 .readMoreButton:hover {
   background-color: var(--color-primary-dark);
 }
@@ -117,30 +117,26 @@
   height: 60px;
   margin-top: 32px;
 }
-
 .bookLessonButton:hover {
   background-color: var(--color-primary-light);
 }
+
 .levels {
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-
 .level {
   border-radius: 35px;
   padding: 8px 12px;
   min-width: 110px;
   height: 32px;
-
   font-weight: 500;
   font-size: 14px;
   line-height: 1.15;
-
   background-color: var(--color-primary);
   color: var(--color-text-primary);
-
   white-space: nowrap;
 }
 .expandedSection {
@@ -182,4 +178,27 @@
 
 .favoriteButton:hover {
   transform: scale(1.1);
+}
+@media (min-width: 860px) {
+  .teacherContainer {
+    width: 1184px;
+  }
+  .languagesContainer {
+    margin-right: 410px;
+  }
+
+  .teacherHeader {
+    justify-content: flex-end;
+  }
+  .teacherCard {
+    gap: 48px;
+  }
+  .avatarContainer {
+    width: 120px;
+    height: 120px;
+  }
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
 }

@@ -1,7 +1,7 @@
 .teachers {
   background-color: var(--color-bg-secondary);
   box-sizing: border-box;
-  padding: 96px 128px;
+  padding: 20px 50px;
 }
 ul {
   list-style: none;
@@ -10,8 +10,8 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 28px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .teachersList {
   display: flex;
@@ -27,4 +27,18 @@ ul {
   width: 183px;
   height: 60px;
   display: block;
+}
+@media (min-width: 860px) {
+  .teachers {
+    background-color: var(--color-bg-secondary);
+    box-sizing: border-box;
+    padding: 96px 128px;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 32px;
+  }
 }
