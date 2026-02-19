@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { useState } from "react";
-import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import bookingUser from "../../firebase/booking";
@@ -8,6 +8,7 @@ import * as yup from "yup";
 import Modal from "../Modal/Modal";
 import css from "./BookModal.module.css";
 import { Button } from "../Ui/Button/Button";
+import { useAuth } from "../../hooks/useAuth";
 
 interface TeacherPreview {
   name: string;
@@ -39,12 +40,9 @@ const schema = yup.object({
 
 const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { user } = useAuth();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm<FormData>({
+  const { register, handleSubmit, reset } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       name: "",
@@ -56,6 +54,7 @@ const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsSubmitting(true);
+
     if (!data.reason) {
       toast.error("Please select a reason for learning English");
       setIsSubmitting(false);
@@ -63,16 +62,34 @@ const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
     }
 
     try {
-      await bookingUser({
+      console.log("Starting booking with data:", {
         ...data,
         teacher,
-        reason: data.reason,
+        userId: user?.uid,
       });
 
-      toast.success("Booking successfully!");
-      reset();
+      await bookingUser({
+        name: data.name,
+        email: data.email,
+        phone_number: data.phone_number,
+        reason: data.reason,
+        teacher,
+        userId: user?.uid || null,
+      });
+
+      console.log("Booking successful, closing modal");
+
+      toast.success("Вас успішно записано на урок 🎉");
+
+      // Close modal first, then reset form
       onClose();
+
+      // Reset form after a short delay to allow modal to close
+      setTimeout(() => {
+        reset();
+      }, 100);
     } catch (error) {
+      console.error("Booking error:", error);
       toast.error(
         error instanceof Error ? error.message : "An unexpected error occurred",
       );
@@ -81,13 +98,13 @@ const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
     }
   };
 
-  const onError = (errors: FieldErrors<FormData>) => {
-    Object.values(errors).forEach((error) => {
-      if (error?.message) toast.error(error.message);
-    });
+  const handleClose = () => {
+    setIsSubmitting(false);
+    reset();
+    onClose();
   };
-
   const { avatar_url, name, surname } = teacher;
+
   const reasons = [
     "Career and business",
     "Lesson for kids",
@@ -96,8 +113,15 @@ const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
     "Culture, travel or hobby",
   ];
 
+  useEffect(() => {
+    if (!isOpen) {
+      setIsSubmitting(false);
+      reset();
+    }
+  }, [isOpen, reset]);
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={handleClose}>
       <div className={css.bookModal}>
         <h2 className={css.bookModalTitle}>Book trial lesson</h2>
         <p className={css.description}>
@@ -119,7 +143,7 @@ const BookLessonsModal: FC<Props> = ({ isOpen, onClose, teacher }) => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h3 className={css.formTitle}>
             What is your main reason for learning English?
           </h3>
